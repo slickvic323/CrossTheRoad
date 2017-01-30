@@ -30,6 +30,7 @@ function Jumper(){
 		
 		if(this.left<-5 || this.right>canvasWidth+5){
 			playerDead=true;
+			howYouDied="You fell off the side of the world!";
 			console.log("Player fell off the screen");
 		}
 	}

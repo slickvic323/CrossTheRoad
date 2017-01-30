@@ -11,10 +11,13 @@ var myRiverArray = [];
 var userScore;
 var highScore=0;
 var playerDead;
+var menuUp;
+var howYouDied = "";
 
 
 
-function setup(){
+function setup(){	
+	menuUp=true;
 	playerDead=false;
 	userScore=0;
 	createCanvas(canvasWidth,canvasHeight);
@@ -32,6 +35,27 @@ function draw(){
 	jumperReact();
 	showScore();
 	checkDead();
+	if(menuUp){
+		showMainMenu();
+	}
+}
+
+function showMainMenu(){
+	stroke(0);
+	fill(19,164,154);
+	rect((canvasWidth/12), canvasHeight/10, canvasWidth*10/12, canvasHeight/2);
+	
+	fill(9,25,105);
+	textSize(30);
+	textAlign(CENTER);
+	text("Slick Vic's", canvasWidth/2, (canvasHeight/10)+30);
+	textSize(40);
+	text("Cross The Road", canvasWidth/2, (canvasHeight/10)+70);
+	
+	textSize(17);
+	text(howYouDied, canvasWidth/2, (canvasHeight/10) + (canvasHeight/4));
+	textSize(20);
+	text("Press UP Arrow to Begin", canvasWidth/2, (canvasHeight/10)+(canvasHeight/2)-50);
 }
 
 function drawGrid(){
@@ -43,24 +67,32 @@ function drawGrid(){
 }
 
 function keyPressed(){
-	if(keyCode == RIGHT_ARROW){
-		myPlayer.xMove=1;
+	if(!menuUp){
+		if(keyCode == RIGHT_ARROW){
+			myPlayer.xMove=1;
+		}
+		else if(keyCode == LEFT_ARROW){
+			myPlayer.xMove=-1;
+		}
+		else if(keyCode == UP_ARROW){
+			myPlayer.yMove=-1;
+		}
+		else if(keyCode == DOWN_ARROW){
+			myPlayer.yMove=1;
+		}
 	}
-	else if(keyCode == LEFT_ARROW){
-		myPlayer.xMove=-1;
-	}
-	else if(keyCode == UP_ARROW){
-		myPlayer.yMove=-1;
-	}
-	else if(keyCode == DOWN_ARROW){
-		myPlayer.yMove=1;
+	else{
+		if(keyCode == UP_ARROW){
+			myPlayer.yMove=-1;
+			menuUp=false;
+		}
 	}
 }
 
 function chooseInitialLandscape(){
 	for(var i=0;i<divider-1;i++){
 		//starting
-		if(i>=myPlayer.yLoc){
+		if(i>=myPlayer.yLoc-1){
 			//make grassland
 			mySectors[i] =new Grassland(i*canvasHeight/divider);
 		}
@@ -165,6 +197,7 @@ function jumperReact(){
 			//myPlayer is hit by a car from the left or right
 			if(currentCar.left < myPlayer.right && currentCar.right > myPlayer.left){
 				playerDead = true;
+				howYouDied="You were hit by a car!";
 				console.log("You were hit by a car");
 			}
 		}
@@ -177,14 +210,15 @@ function jumperReact(){
 			var currentLog=mySectors[myPlayer.yLoc].myLogs[i];
 			if(currentLog.left < myPlayer.right && currentLog.right > myPlayer.left){
 				onLog=true;
-				jumperOnLog();
+				jumperOnLog(i);
 				break;
 			}
 		}
 		//player drowned
 		if(!onLog){
 			playerDead=true;
-			console.log("You drowned");
+			howYouDied="You drowned!";
+			console.log("You drowned.");
 		}
 		myPlayer.prevSector=2;
 	}
@@ -197,6 +231,7 @@ function jumperReact(){
 		if(mySectors[myPlayer.yLoc].newTrain!=null){
 			if(mySectors[myPlayer.yLoc].newTrain.left < myPlayer.right && mySectors[myPlayer.yLoc].newTrain.right > myPlayer.left){
 				playerDead=true;
+				howYouDied="You were hit by a train!";
 				console.log("You were hit by a train");
 			}
 		}
@@ -204,20 +239,20 @@ function jumperReact(){
 	}
 }
 
-function jumperOnLog(){
-	for(var i=0;i<mySectors[myPlayer.yLoc].myLogs.length;i++){
-		var currentLog = mySectors[myPlayer.yLoc].myLogs[i];
-		if(currentLog.left < myPlayer.right && currentLog.right > myPlayer.left){
-			for(var j=1;j<=currentLog.numSections;j++){
-				if(myPlayer.midX < (currentLog.left + (currentLog.logWidth/currentLog.numSections*j))){
-					myPlayer.onLogSection=j;
-					break;
-				}
-			}
-			myPlayer.xLoc = (currentLog.x+((currentLog.logWidth/currentLog.numSections)*(myPlayer.onLogSection-1))) *xDivider / canvasWidth;
+//FIX THIS
+function jumperOnLog(i){
+	var currentLog = mySectors[myPlayer.yLoc].myLogs[i];
+	for(var j=1;j<=currentLog.numSections;j++){
+		if(myPlayer.right < (currentLog.left+5 + (currentLog.logWidth/currentLog.numSections*j))){
+			myPlayer.onLogSection=j;
+			break;
 		}
-		break;
+		else if(j==currentLog.numSections){
+			myPlayer.onLogSection=j;
+			break;
+		}
 	}
+	myPlayer.xLoc = (currentLog.x+((currentLog.logWidth/currentLog.numSections)*(myPlayer.onLogSection-1))) *xDivider / canvasWidth;
 }
 
 function checkDead(){
