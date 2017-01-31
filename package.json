@@ -1,0 +1,23 @@
+{
+  "name": "crosstheroad",
+  "version": "1.0.0",
+  "description": "what could be at the end of the road, find out for yourself",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slickvic323/CrossTheRoad.git"
+  },
+  "author": "slickvic323",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slickvic323/CrossTheRoad/issues"
+  },
+  "homepage": "https://github.com/slickvic323/CrossTheRoad#readme",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}
