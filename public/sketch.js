@@ -42,7 +42,7 @@ function draw(){
 
 function showMainMenu(){
 	stroke(0);
-	fill(19,164,154);
+	fill(19,164,154,245);
 	rect((canvasWidth/12), canvasHeight/10, canvasWidth*10/12, canvasHeight/2);
 	
 	fill(9,25,105);
