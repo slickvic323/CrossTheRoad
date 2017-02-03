@@ -14,9 +14,14 @@ var playerDead;
 var menuUp;
 var howYouDied = "";
 
+var redCarLeft, redCarRight, blueCarLeft, blueCarRight,pinkCarLeft,pinkCarRight,
+	purpleCarLeft,purpleCarRight,yellowCarLeft,yellowCarRight;
+var slickVicFront,slickVicBack,slickVicLeft, slickVicRight;
 
 
-function setup(){	
+
+function setup(){
+	imageSetup();
 	menuUp=true;
 	playerDead=false;
 	userScore=0;
@@ -38,6 +43,25 @@ function draw(){
 	if(menuUp){
 		showMainMenu();
 	}
+}
+
+function imageSetup(){
+	redCarLeft=loadImage("images/redCarLeft.png");
+	redCarRight=loadImage("images/redCarRight.png");
+	blueCarLeft=loadImage("images/blueCarLeft.png");
+	blueCarRight=loadImage("images/blueCarRight.png");
+	pinkCarLeft=loadImage("images/pinkCarLeft.png");
+	pinkCarRight=loadImage("images/pinkCarRight.png");
+	purpleCarLeft=loadImage("images/purpleCarLeft.png");
+	purpleCarRight=loadImage("images/purpleCarRight.png");
+	yellowCarLeft=loadImage("images/yellowCarLeft.png");
+	yellowCarRight=loadImage("images/yellowCarRight.png");
+	slickVicFront=loadImage("images/slickVicFront.png");
+	slickVicBack=loadImage("images/slickVicBack.png");
+	slickVicLeft=loadImage("images/slickVicLeft.png");
+	slickVicRight=loadImage("images/slickVicRight.png");
+	
+	
 }
 
 function showMainMenu(){

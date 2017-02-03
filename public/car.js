@@ -13,6 +13,7 @@ function Car(yNum,tR,speed){
 	this.top;
 	this.bottom;
 	
+	
 	this.carStartSpot=function(){
 		if(this.travelsRight){
 			this.x=-this.carWidth;
@@ -42,24 +43,48 @@ function Car(yNum,tR,speed){
 		stroke(0);
 		//Blue Car
 		if(this.carColor<1){
-			fill(80,149,166);
+			if(this.travelsRight){
+				image(blueCarRight, this.x, matchStreetY, this.carWidth, this.carHeight);
+			}
+			else{
+				image(blueCarLeft, this.x, matchStreetY, this.carWidth, this.carHeight);
+			}
 		}
 		//Red Car
 		else if(this.carColor<2){
-			fill(206,18,18);
+			if(this.travelsRight){
+				image(redCarRight, this.x, matchStreetY, this.carWidth, this.carHeight);
+			}
+			else{
+				image(redCarLeft, this.x, matchStreetY, this.carWidth, this.carHeight);
+			}
 		}
 		//Purple Car
 		else if(this.carColor<3){
-			fill(168,64,206);
+			if(this.travelsRight){
+				image(purpleCarRight, this.x, matchStreetY, this.carWidth, this.carHeight);
+			}
+			else{
+				image(purpleCarLeft, this.x, matchStreetY, this.carWidth, this.carHeight);
+			}
 		}
 		//Dark Yellow Car
 		else if(this.carColor<4){
-			fill(219,235,74);
+			if(this.travelsRight){
+				image(yellowCarRight, this.x, matchStreetY, this.carWidth, this.carHeight);
+			}
+			else{
+				image(yellowCarLeft, this.x, matchStreetY, this.carWidth, this.carHeight);
+			}
 		}
 		//Pink Car
 		else{
-			fill(204,0,102);
+			if(this.travelsRight){
+				image(pinkCarRight, this.x, matchStreetY, this.carWidth, this.carHeight);
+			}
+			else{
+				image(pinkCarLeft, this.x, matchStreetY, this.carWidth, this.carHeight);
+			}
 		}
-		rect(this.x,matchStreetY,this.carWidth,this.carHeight);
 	}
 }

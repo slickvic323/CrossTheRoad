@@ -14,6 +14,9 @@ function Jumper(){
 	this.bottom;
 	this.onLogSection;
 	this.prevSector;
+	this.lastMove=1; //1=backwards 2=forwards 3=left 4=right
+	
+	
 	
 	this.update=function(){
 		//console.log(this.xLoc);
@@ -24,9 +27,26 @@ function Jumper(){
 		this.top=this.yLoc*this.jumperHeight;
 		this.bottom=this.top+this.jumperHeight;
 		
-		stroke(230);
-		fill(82,226,125);
-		rect(this.xLoc*this.jumperWidth, this.yLoc*this.jumperHeight, this.jumperWidth, this.jumperHeight);
+		// stroke(230);
+		// fill(82,226,125);
+		// rect(this.xLoc*this.jumperWidth, this.yLoc*this.jumperHeight, this.jumperWidth, this.jumperHeight);
+		
+		//Front facing image
+		if(this.lastMove==1){
+			image(slickVicFront, this.xLoc*this.jumperWidth, this.yLoc*this.jumperHeight, this.jumperWidth, this.jumperHeight);
+		}
+		//Back Facing Image
+		else if(this.lastMove==2){
+			image(slickVicBack, this.xLoc*this.jumperWidth, this.yLoc*this.jumperHeight, this.jumperWidth, this.jumperHeight);
+		}
+		//Left Facing Image
+		else if(this.lastMove==3){
+			image(slickVicLeft, this.xLoc*this.jumperWidth, this.yLoc*this.jumperHeight, this.jumperWidth, this.jumperHeight);
+		}
+		//Right Facing Image
+		else if(this.lastMove==4){
+			image(slickVicRight, this.xLoc*this.jumperWidth, this.yLoc*this.jumperHeight, this.jumperWidth, this.jumperHeight);
+		}
 		
 		if(this.left<-5 || this.right>canvasWidth+5){
 			playerDead=true;
@@ -39,15 +59,18 @@ function Jumper(){
 		if(this.xMove!=0){
 			if(this.xMove==1 && this.xLoc<(xDivider-1)){
 				this.xLoc++;
+				this.lastMove=4;
 			}
 			else if(this.xMove==-1 && this.xLoc>0){
 				this.xLoc--;
+				this.lastMove=3;
 			}
 			this.xMove=0;
 		}
 		if(this.yMove!=0){
 			if(this.yMove==1 && this.yLoc<(divider-2)){
 				this.yLoc++;
+				this.lastMove=1;
 			}
 			else if(this.yMove==-1 && this.yLoc>0){
 				if(this.yLoc<=11){
@@ -56,6 +79,7 @@ function Jumper(){
 				else{
 					this.yLoc--;
 				}
+				this.lastMove=2;
 			}
 			this.yMove=0;
 		}
