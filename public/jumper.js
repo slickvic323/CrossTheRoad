@@ -33,19 +33,19 @@ function Jumper(){
 		
 		//Front facing image
 		if(this.lastMove==1){
-			image(slickVicFront, this.xLoc*this.jumperWidth, this.yLoc*this.jumperHeight, this.jumperWidth, this.jumperHeight);
+			image(slickVicFront, this.xLoc*this.jumperWidth, (this.yLoc-0.25)*this.jumperHeight, this.jumperWidth, this.jumperHeight);
 		}
 		//Back Facing Image
 		else if(this.lastMove==2){
-			image(slickVicBack, this.xLoc*this.jumperWidth, this.yLoc*this.jumperHeight, this.jumperWidth, this.jumperHeight);
+			image(slickVicBack, this.xLoc*this.jumperWidth, (this.yLoc-0.25)*this.jumperHeight, this.jumperWidth, this.jumperHeight);
 		}
 		//Left Facing Image
 		else if(this.lastMove==3){
-			image(slickVicLeft, this.xLoc*this.jumperWidth, this.yLoc*this.jumperHeight, this.jumperWidth, this.jumperHeight);
+			image(slickVicLeft, this.xLoc*this.jumperWidth, (this.yLoc-0.25)*this.jumperHeight, this.jumperWidth, this.jumperHeight);
 		}
 		//Right Facing Image
 		else if(this.lastMove==4){
-			image(slickVicRight, this.xLoc*this.jumperWidth, this.yLoc*this.jumperHeight, this.jumperWidth, this.jumperHeight);
+			image(slickVicRight, this.xLoc*this.jumperWidth, (this.yLoc-0.25)*this.jumperHeight, this.jumperWidth, this.jumperHeight);
 		}
 		
 		if(this.left<-5 || this.right>canvasWidth+5){
