@@ -98,22 +98,31 @@ function chooseInitialLandscape(){
 		}
 		//random assignment
 		else{
-			var r = random(100);
-			//street
-			if(r<40){
-				mySectors[i]=new Street(i*canvasHeight/divider);
-				mySectors[i].initialize();
-			}
-			//grassland
-			else if(r<80){
-				mySectors[i] =new Grassland(i*canvasHeight/divider);
-			}
-			//river
-			else{
-				mySectors[i]=new River(i*canvasHeight/divider);
-				mySectors[i].initialize();
-			}
+			chooseNextSector(i);
 		}
+	}
+}
+
+function chooseNextSector(i){
+	var rando = random(100);
+	//Street
+	if(rando<30){
+		mySectors[i]=new Street(i*canvasHeight/divider);
+		mySectors[i].initialize();
+	}
+	//Railroad
+	else if(rando<40){
+		mySectors[i]=new TrainTracks(i*canvasHeight/divider);
+		mySectors[i].initialize();
+	}
+	//grassland
+	else if(rando<80){
+		mySectors[i] =new Grassland(i*canvasHeight/divider);
+	}
+	//river
+	else{
+		mySectors[i]=new River(i*canvasHeight/divider);
+		mySectors[i].initialize();
 	}
 }
 
@@ -130,40 +139,13 @@ function upOne(){
 		mySectors[i+1]=mySectors[i];
 		
 		mySectors[i+1].yLoc=(i+1)*canvasHeight/divider;
-		if(mySectors[i+1].sectorType==0){
-			
-		}
-		else if(mySectors[i+1].sectorType==1){
-			
-		}
-		else if(mySectors[i+1].sectorType==2){
-			
-		}
 	}
 	//make new highest sector
 	newTopSector();
 }
 
 function newTopSector(){
-	var rando = random(100);
-	//street
-	if(rando<30){
-		mySectors[0]=new Street(0);
-		mySectors[0].initialize();
-	}
-	else if(rando<40){
-		mySectors[0]=new TrainTracks(0);
-		mySectors[0].initialize();
-	}
-	//grassland
-	else if(rando<80){
-		mySectors[0] =new Grassland(0);
-	}
-	//river
-	else{
-		mySectors[0]=new River(0);
-		mySectors[0].initialize();
-	}
+	chooseNextSector(0);
 }
 
 function showScore(){
@@ -203,24 +185,45 @@ function jumperReact(){
 		}
 	}
 	//Jumper on river
-	else if(mySectors[myPlayer.yLoc].sectorType==2){
-		var onLog = false;
+	else if(mySectors[myPlayer.yLoc].sectorType==2){	
+		if(mySectors[myPlayer.yLoc].hasLogs){	
+			var onLog = false;
 		
-		for(var i=0;i<mySectors[myPlayer.yLoc].myLogs.length;i++){
-			var currentLog=mySectors[myPlayer.yLoc].myLogs[i];
-			if(currentLog.left < myPlayer.right && currentLog.right > myPlayer.left){
-				onLog=true;
-				jumperOnLog(i);
-				break;
+			for(var i=0;i<mySectors[myPlayer.yLoc].myLogs.length;i++){
+				var currentLog=mySectors[myPlayer.yLoc].myLogs[i];
+				if(currentLog.left < myPlayer.right && currentLog.right > myPlayer.left){
+					onLog=true;
+					jumperOnLog(i);
+					break;
+				}
+			}
+			//player drowned
+			if(!onLog){
+				playerDead=true;
+				howYouDied="You drowned!";
+				console.log("You drowned.");
+			}
+			myPlayer.prevSector=2;
+		}
+		//LilyPads
+		else{
+			myPlayer.xLoc = Math.round(myPlayer.xLoc);
+			var onLily=false;
+			for(var i=0;i<mySectors[myPlayer.yLoc].myLilies.length;i++){
+				var currentLilyPad=mySectors[myPlayer.yLoc].myLilies[i];
+				
+				if(currentLilyPad.left<myPlayer.right-5 && currentLilyPad.right>myPlayer.left+5){
+					onLily=true;
+					break;
+				}
+			}
+			
+			if(!onLily){
+				playerDead=true;
+				howYouDied="You drowned!";
+				console.log("You drowned.");
 			}
 		}
-		//player drowned
-		if(!onLog){
-			playerDead=true;
-			howYouDied="You drowned!";
-			console.log("You drowned.");
-		}
-		myPlayer.prevSector=2;
 	}
 	//jumper on traintracks
 	else if(mySectors[myPlayer.yLoc].sectorType==3){
@@ -239,7 +242,6 @@ function jumperReact(){
 	}
 }
 
-//FIX THIS
 function jumperOnLog(i){
 	var currentLog = mySectors[myPlayer.yLoc].myLogs[i];
 	for(var j=1;j<=currentLog.numSections;j++){
