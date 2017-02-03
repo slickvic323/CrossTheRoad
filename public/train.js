@@ -1,5 +1,5 @@
 function Train(yNum, tR, speed){
-	this.trainLength=canvasWidth*3;
+	this.trainLength=canvasWidth*5;
 	this.x;
 	this.left;
 	this.right;
