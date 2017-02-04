@@ -9,5 +9,5 @@ var port = process.env.PORT || 8080;
 app.use(express.static(__dirname + '/public'));
 
 app.listen(port, function(){
-  console.log("CrossTheRoad is running on port 3000!")
+  console.log("CrossTheRoad is running on port 8080!")
 });
