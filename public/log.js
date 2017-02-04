@@ -60,8 +60,9 @@ function Log(yNum,tR,speed){
 			this.x=this.x-this.speed;
 		}
 
-		fill(139,69,19);
-		rect(this.x,matchRiverY,this.logWidth,this.logHeight);
+		//fill(139,69,19);
+		//rect(this.x,matchRiverY,this.logWidth,this.logHeight);
+		image(logImage,this.x,matchRiverY,this.logWidth+(this.logWidth*0.1),this.logHeight);
 		
 	}
 }
