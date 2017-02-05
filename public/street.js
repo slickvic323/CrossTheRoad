@@ -31,7 +31,7 @@ function Street(y){
 		var lineX=0;
 		while(lineX<canvasWidth){
 			var lineXEnd = lineX+(canvasWidth/20);
-			line(lineX,this.yLoc+(canvasHeight/divider/2),lineXEnd,this.yLoc+(canvasHeight/divider/2));
+			line(lineX,this.yLoc+(canvasHeight/divider*8/20),lineXEnd,this.yLoc+(canvasHeight/divider*8/20));
 			lineX=lineXEnd+(canvasWidth/20);
 		}
 		stroke(0);

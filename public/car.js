@@ -44,46 +44,46 @@ function Car(yNum,tR,speed){
 		//Blue Car
 		if(this.carColor<1){
 			if(this.travelsRight){
-				image(blueCarRight, this.x, matchStreetY, this.carWidth, this.carHeight);
+				image(blueCarRight, this.x, matchStreetY-(canvasWidth/divider/2), this.carWidth, this.carHeight*1.3);
 			}
 			else{
-				image(blueCarLeft, this.x, matchStreetY, this.carWidth, this.carHeight);
+				image(blueCarLeft, this.x, matchStreetY-(canvasWidth/divider/2), this.carWidth, this.carHeight*1.3);
 			}
 		}
 		//Red Car
 		else if(this.carColor<2){
 			if(this.travelsRight){
-				image(redCarRight, this.x, matchStreetY, this.carWidth, this.carHeight);
+				image(redCarRight, this.x, matchStreetY-(canvasWidth/divider/2), this.carWidth, this.carHeight*1.3);
 			}
 			else{
-				image(redCarLeft, this.x, matchStreetY, this.carWidth, this.carHeight);
+				image(redCarLeft, this.x, matchStreetY-(canvasWidth/divider/2), this.carWidth, this.carHeight*1.3);
 			}
 		}
 		//Purple Car
 		else if(this.carColor<3){
 			if(this.travelsRight){
-				image(purpleCarRight, this.x, matchStreetY, this.carWidth, this.carHeight);
+				image(purpleCarRight, this.x, matchStreetY-(canvasWidth/divider/2), this.carWidth, this.carHeight*1.3);
 			}
 			else{
-				image(purpleCarLeft, this.x, matchStreetY, this.carWidth, this.carHeight);
+				image(purpleCarLeft, this.x, matchStreetY-(canvasWidth/divider/2), this.carWidth, this.carHeight*1.3);
 			}
 		}
 		//Dark Yellow Car
 		else if(this.carColor<4){
 			if(this.travelsRight){
-				image(yellowCarRight, this.x, matchStreetY, this.carWidth, this.carHeight);
+				image(yellowCarRight, this.x, matchStreetY-(canvasWidth/divider/2), this.carWidth, this.carHeight*1.3);
 			}
 			else{
-				image(yellowCarLeft, this.x, matchStreetY, this.carWidth, this.carHeight);
+				image(yellowCarLeft, this.x, matchStreetY-(canvasWidth/divider/2), this.carWidth, this.carHeight*1.3);
 			}
 		}
 		//Pink Car
 		else{
 			if(this.travelsRight){
-				image(pinkCarRight, this.x, matchStreetY, this.carWidth, this.carHeight);
+				image(pinkCarRight, this.x, matchStreetY-(canvasWidth/divider/2), this.carWidth, this.carHeight*1.3);
 			}
 			else{
-				image(pinkCarLeft, this.x, matchStreetY, this.carWidth, this.carHeight);
+				image(pinkCarLeft, this.x, matchStreetY-(canvasWidth/divider/2), this.carWidth, this.carHeight*1.3);
 			}
 		}
 	}

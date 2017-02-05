@@ -26,8 +26,11 @@ function Train(yNum, tR, speed){
 		this.top=matchTrainTracksY+(canvasHeight/divider/8);
 		this.bottom=this.top+canvasHeight/divider*6/8;
 		
-		fill(142,6,6);
-		rect(this.x, matchTrainTracksY+(canvasHeight/divider/8), this.trainLength, canvasHeight/divider*6/8);
+		if(tR){
+			image(trainRight, this.x, matchTrainTracksY+(canvasHeight/divider/8), this.trainLength, canvasHeight/divider*6/8);
+		}
+		else{
+			image(trainLeft, this.x, matchTrainTracksY+(canvasHeight/divider/8), this.trainLength, canvasHeight/divider*6/8);
+		}
 	}
-
 }
