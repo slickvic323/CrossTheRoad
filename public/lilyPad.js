@@ -7,7 +7,8 @@ function LilyPad(xNum,yNum){
 	this.right=this.left+(canvasWidth/xDivider);
 	this.update=function(y){
 		this.y=y;
-		fill(22,185,30);
-		arc(this.x+(canvasWidth/xDivider/2),this.y+(canvasHeight/divider/2),canvasWidth/xDivider, canvasHeight/divider, this.startingDegree,this.endingDegree,PIE);
+		//fill(22,185,30);
+		//arc(this.x+(canvasWidth/xDivider/2),this.y+(canvasHeight/divider/2),canvasWidth/xDivider, canvasHeight/divider, this.startingDegree,this.endingDegree,PIE);
+		image(lilyPadImage,this.x,this.y,canvasWidth/xDivider,canvasHeight/divider);
 	}
 }

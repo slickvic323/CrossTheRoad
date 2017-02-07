@@ -17,7 +17,7 @@ var howYouDied = "";
 var redCarLeft, redCarRight, blueCarLeft, blueCarRight,pinkCarLeft,pinkCarRight,
 	purpleCarLeft,purpleCarRight,yellowCarLeft,yellowCarRight;
 var slickVicFront,slickVicBack,slickVicLeft, slickVicRight;
-var logImage, trainLeft, trainRight;
+var logImage, trainLeft, trainRight, lilyPadImage;
 
 
 
@@ -64,7 +64,7 @@ function imageSetup(){
 	logImage=loadImage("images/log.png");
 	trainLeft=loadImage("images/trainLeft.png");
 	trainRight=loadImage("images/trainRight.png");
-	
+	lilyPadImage=loadImage("images/lilyPad.png");
 	
 }
 
